@@ -1,0 +1,19 @@
+<ul>
+  <% @lists.each do |list| %>
+    <li><%= link_to list.name, list_path(list) %></li>
+  <% end %>
+</ul>
+
+<p>Create a new list<p>
+<%= form_for @list do |f| %>
+  <div class="field">
+    <%= f.label :name, "What do you want to call your list?" %><br />
+    <%= f.text_field :name, placeholder: "List Name" %><br />
+      </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+
+<% end %>
+  
