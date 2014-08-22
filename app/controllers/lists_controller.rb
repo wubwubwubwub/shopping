@@ -1,5 +1,10 @@
 class ListsController < ApplicationController
 
+  def index
+    @lists = List.all
+    @list = List.new
+  end
+  
   def show
     @list = List.find(params[:id])
     @items = Item.where(list_id: params[:id])
