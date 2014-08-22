@@ -2,15 +2,16 @@ List Show View
 
 
 <h3><%= @list.name %></h3>
-<ul>
+<table>
   <% @items.each do |item| %>
-    <li><%= item.name %><%= " - #{item.quan}" if item.quan %> - <%= link_to 'Delete!', item_path(item), method: :delete, data: { confirm: 'Are you sure?'}%></li>
-      <% if item.notes != "" %>
-      <ul><li><%= item.notes %></li></ul>
-      <% end %>
-      
+  <tr>
+      <td>- <%= item.name.capitalize %></td>
+      <td><%= " - #{item.quan.capitalize}" if item.quan %></td>
+      <td><%= "- #{item.notes.capitalize}" if item.notes != "" %>
+      <td><%= button_to 'Delete!', item_path(item), method: :delete, data: { confirm: 'Are you sure?'}%></td>      
+  </tr>
   <% end %>
-</ul>
+</table>
 
 <p>add functionality to email list to someone with an email field and a button</p>
 
