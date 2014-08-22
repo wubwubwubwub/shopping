@@ -4,10 +4,11 @@ List Show View
 <h3><%= @list.name %></h3>
 <ul>
   <% @items.each do |item| %>
-    <li><%= item.name %><%= " - #{item.quan}" if item.quan %></li>
+    <li><%= item.name %><%= " - #{item.quan}" if item.quan %> - <%= link_to 'Delete!', item_path(item), method: :delete, data: { confirm: 'Are you sure?'}%></li>
       <% if item.notes != "" %>
       <ul><li><%= item.notes %></li></ul>
       <% end %>
+      
   <% end %>
 </ul>
 
