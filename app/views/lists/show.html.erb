@@ -1,32 +1,40 @@
-List Show View
-
-
-<h3><%= @list.name %></h3>
-<table>
-  <% @items.each do |item| %>
-  <tr>
-      <td>- <%= item.name.capitalize %></td>
+<h3><%= "List: #{@list.name.capitalize}" %></h3>
+<% @items.each do |item| %>
+  <table>
+    <tr>
+      <td><%= "- #{item.name.capitalize}" %></td>
       <td><%= " - #{item.quan.capitalize}" if item.quan %></td>
       <td><%= "- #{item.notes.capitalize}" if item.notes != "" %></td>
       <td><%= button_to 'Delete!', item_path(item), method: :delete, data: { confirm: 'Are you sure?'}%></td>      
-  </tr>
-  <% end %>
-</table>
+    </tr>
+  </table>
+<% end %>
 
-<p>add functionality to email list to someone with an email field and a button</p>
+<br />
+<br />
 
+<h4>Add New Items To Your List!</h4>
 <%= form_for @item do |f| %>
   <div class="field">
-    <%= f.label :name, "Item" %><br />
-    <%= f.text_field :name, placeholder: "Add an item" %><br />
-    <%= f.label :quan, "Quantity" %><br />
-    <%= f.text_field :quan, placeholder: "Enter Quantity" %><br />
-    <%= f.label :notes, "Special Notes" %><br />
-    <%= f.text_area :notes, placeholder: "Notes" %>
-  </div>
+  <table>
+    <tr>
+      <td><%= f.label :name, "Item" %></td> 
+      <td><%= f.label :quan, "Quantity" %></td>
+    </tr>
+    <tr>
+      <td><%= f.text_field :name, placeholder: "Add an item" %></td>
+      <td><%= f.text_field :quan, placeholder: "Enter Quantity" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :notes, "Special Notes" %></td>
+    </tr>
+    <tr>
+      <td colspan="2"><%= f.text_area :notes, placeholder: "Notes", :cols => 33 %></td>
+    </tr>
+  </table>
+  </div>       
   <div class="actions">
     <%= f.submit("Add Item") %>
   </div>
   <%= f.hidden_field :list_id, value: @list.id %>
-
 <% end %>
