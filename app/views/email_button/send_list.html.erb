@@ -1,0 +1,9 @@
+<h2>Here is your shopping list</h2>
+
+<h3><%= "List: #{@list.name.capitalize}" %></h3>
+
+<ol>
+  <% @items.each do |item| %>
+  <li><%= "- #{item.name.capitalize}" %><%= " - #{item.quan.capitalize}" if item.quan %><%= " - #{item.notes.capitalize}" if item.notes != "" %><%= button_to 'Delete!', item_path(item), method: :delete, data: { confirm: 'Are you sure?'}%></li>      
+<% end %>
+</ol>

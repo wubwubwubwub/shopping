@@ -1,17 +1,12 @@
-<h3><%= "List: #{@list.name.capitalize}" %></h3>
-<% @items.each do |item| %>
-  <table>
-    <tr>
-      <td><%= "- #{item.name.capitalize}" %></td>
-      <td><%= " - #{item.quan.capitalize}" if item.quan %></td>
-      <td><%= "- #{item.notes.capitalize}" if item.notes != "" %></td>
-      <td><%= button_to 'Delete!', item_path(item), method: :delete, data: { confirm: 'Are you sure?'}%></td>      
-    </tr>
-  </table>
-<% end %>
+<p id="notice"><%= notice %></p>
 
-<br />
-<br />
+
+<h3><%= "List: #{@list.name.capitalize}" %></h3>
+<ol>
+  <% @items.each do |item| %>
+  <li><%= "- #{item.name.capitalize}" %><%= " - #{item.quan.capitalize}" if item.quan %><%= " - #{item.notes.capitalize}" if item.notes != "" %><%= button_to 'Delete!', item_path(item), method: :delete, data: { confirm: 'Are you sure?'}%></li>      
+<% end %>
+</ol>
 
 <h4>Add New Items To Your List!</h4>
 <%= form_for @item do |f| %>
@@ -37,4 +32,15 @@
     <%= f.submit("Add Item") %>
   </div>
   <%= f.hidden_field :list_id, value: @list.id %>
+<% end %>
+
+<h4>Send your list to someone!</h4>
+<%= form_for @list do |f| %>
+  <div class="field">
+    <%= f.label :email, "Email Address" %>
+    <%= f.email_field :email, placeholder: "Enter email" %>
+  </div>
+  <div class="actions>" >
+    <%= f.submit("Send Email") %>
+  </div>
 <% end %>
