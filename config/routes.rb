@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :lists
   resources :items
 
+
   # Example resource route with options:
   #   resources :products do
   #     member do
