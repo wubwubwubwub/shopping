@@ -3,7 +3,7 @@ class EmailButton < ActionMailer::Base
   
   def send_list(list)
     @list = list
-    @items = Item.where(list_id: list.id)
+    @items = list.items
     mail(to: list.email, subject: 'Here is your list')
   end
 
