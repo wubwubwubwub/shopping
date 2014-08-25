@@ -19,28 +19,35 @@ class ListsController < ApplicationController
   
   def update
     @list = List.find(params[:id])
-    @list.update(list_params)
+    EmailButton.send_list(@list, params[:send_to_address]).deliver
     
-    EmailButton.send_list(@list).deliver
-    if @list.update(list_params)
+    if true
       redirect_to @list, notice: "Your email was sent to #{@list.email}" 
     else
       redirect_to root_path
     end
     
-    
   end
-  
-  
+
   
   def create
     @list = List.create(list_params)
     redirect_to list_path(@list)
   end
+  
+  def sendemail
+    @list = List.find(params[:id])
+    EmailButton.send_list(@list, params[:send_to_address]).deliver
+    redirect_to @list, notice: 'Your list has been sent!'
+  end
+  
+  
+  
+  
 
   private
   def list_params
-    params.require(:list).permit(:name, :email)
+    params.require(:list).permit(:name, :email, :send_to_address)
   end
   
 end

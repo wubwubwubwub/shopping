@@ -35,12 +35,12 @@
 <% end %>
 
 <h4>Send your list to someone!</h4>
-<%= form_for @list do |f| %>
-  <div class="field">
-    <%= f.label :email, "Email Address" %>
-    <%= f.email_field :email, placeholder: "Enter email" %>
-  </div>
-  <div class="actions>" >
-    <%= f.submit("Send Email") %>
-  </div>
+<%= form_tag(@list, method: "patch") do %>
+  <%= label_tag(:send_to_address, "Email to:") %>
+  <%= text_field_tag(:send_to_address) %>
+
+  <%= submit_tag("Send out email") %>
+  
 <% end %>
+
+
