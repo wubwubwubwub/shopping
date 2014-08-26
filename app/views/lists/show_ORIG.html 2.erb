@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+
+<h3><%= "List: #{@list.name.capitalize}" %></h3>
+<ol>
+  <% @items.each do |item| %>
+  <li><%= "- #{item.name.capitalize}" %><%= " - #{item.quan.capitalize}" if item.quan != "" %><%= " - #{item.notes.capitalize}" if item.notes != "" %><%= button_to 'Delete!', edit_item_path(item), method: :delete, data: { confirm: 'Are you sure?'}%></li>      
+<% end %>
+</ol>
+
+<h4>Add New Items To Your List!</h4>
+<%= form_for @item do |f| %>
+  <div class="field">
+  <table>
+    <tr>
+      <td><%= f.label :name, "Item" %></td> 
+      <td><%= f.label :quan, "Quantity" %></td>
+    </tr>
+    <tr>
+      <td><%= f.text_field :name, placeholder: "Add an item" %></td>
+      <td><%= f.text_field :quan, placeholder: "Enter Quantity" %></td>
+    </tr>
+    <tr>
+      <td><%= f.label :notes, "Notes" %></td>
+    </tr>
+    <tr>
+      <td colspan="2"><%= f.text_area :notes, placeholder: "Optional", :cols => 33 %></td>
+    </tr>
+  </table>
+  </div>       
+  <div class="actions">
+    <%= f.submit("Add Item") %>
+  </div>
+  <%= f.hidden_field :list_id, value: @list.id %>
+<% end %>
+
+<h4>Send your list to someone!</h4>
+<%= form_tag(@list, method: "patch") do %>
+  <table>
+    <tr>
+      <td><%= label_tag :sent_from, "Your name:" %></td>
+      <td><%= text_field_tag :sent_from, nil, placeholder: 'name' %></td>
+    </tr>
+    <tr>
+      <td><%= label_tag :send_to_address, "Email to:" %></td>
+      <td><%= text_field_tag :send_to_address, nil, placeholder: 'email' %></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align:right"><%= submit_tag "Send Email!" %></td>
+    </tr>
+  </table>
+<% end %>
+
+

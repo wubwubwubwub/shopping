@@ -11,6 +11,8 @@ class ItemsController < ApplicationController
     
     redirect_to :back
   end
+  
+  def new;  end
 
   private
   def item_params

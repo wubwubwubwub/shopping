@@ -1,8 +1,6 @@
 class List < ActiveRecord::Base
   has_many :items, dependent: :destroy
   
-  def slab
-    redirect_to root_path
-  end
+  accepts_nested_attributes_for :items, allow_destroy: true
 
 end
