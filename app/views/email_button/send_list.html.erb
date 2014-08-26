@@ -7,6 +7,6 @@
 <h3><%= "This list has #{@list.items.count} items." %></h3>
 <ol>
   <% @list.items.each do |item| %>
-  <li><%= item.name.capitalize %></li>
+  <li><%= "#{item.name.capitalize}" %> <%= " - #{item.quan.capitalize}" if item.quan != "" %> <%= " - #{item.notes}" if item.notes != "" %></li>
   <% end %>
 </ol>
