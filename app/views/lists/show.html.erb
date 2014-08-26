@@ -4,7 +4,7 @@
 <h3><%= "List: #{@list.name.capitalize}" %></h3>
 <ol>
   <% @items.each do |item| %>
-  <li><%= "- #{item.name.capitalize}" %><%= " - #{item.quan.capitalize}" if item.quan != "" %><%= " - #{item.notes.capitalize}" if item.notes != "" %><%= button_to 'Delete!', item_path(item), method: :delete, data: { confirm: 'Are you sure?'}%></li>      
+  <li><%= "- #{item.name.capitalize}" %><%= " - #{item.quan.capitalize}" if item.quan != "" %><%= " - #{item.notes.capitalize}" if item.notes != "" %><%= button_to 'Delete!', edit_item_path(item), method: :delete, data: { confirm: 'Are you sure?'}%></li>      
 <% end %>
 </ol>
 
@@ -46,7 +46,7 @@
       <td><%= text_field_tag :send_to_address, nil, placeholder: 'email' %></td>
     </tr>
     <tr>
-      <td colspan="2" style="text-align:right"><%= submit_tag("Send out email") %></td>
+      <td colspan="2" style="text-align:right"><%= submit_tag "Send Email!" %></td>
     </tr>
   </table>
 <% end %>

@@ -5,7 +5,7 @@ class EmailButton < ActionMailer::Base
     @list = list
     @email = email
     @sender = sender
-    mail(to: email, subject: 'Here is your list')
+    mail(to: email, subject: "#{@sender.capitalize} sent you a shopping list!")
   end
 
 end
