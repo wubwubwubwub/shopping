@@ -19,7 +19,7 @@ class ListsController < ApplicationController
   
   def update
     @list = List.find(params[:id])
-    EmailButton.send_list(@list, params[:send_to_address]).deliver
+    EmailButton.send_list(@list, params[:send_to_address], params[:sent_from]).deliver
     redirect_to @list, notice: "Your email was sent to #{params[:send_to_address]}" 
   end
 

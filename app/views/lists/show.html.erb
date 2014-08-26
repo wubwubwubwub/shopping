@@ -36,11 +36,19 @@
 
 <h4>Send your list to someone!</h4>
 <%= form_tag(@list, method: "patch") do %>
-  <%= label_tag(:send_to_address, "Email to:") %>
-  <%= text_field_tag(:send_to_address) %>
-
-  <%= submit_tag("Send out email") %>
-  
+  <table>
+    <tr>
+      <td><%= label_tag :sent_from, "Your name:" %></td>
+      <td><%= text_field_tag :sent_from, nil, placeholder: 'name' %></td>
+    </tr>
+    <tr>
+      <td><%= label_tag :send_to_address, "Email to:" %></td>
+      <td><%= text_field_tag :send_to_address, nil, placeholder: 'email' %></td>
+    </tr>
+    <tr>
+      <td colspan="2" style="text-align:right"><%= submit_tag("Send out email") %></td>
+    </tr>
+  </table>
 <% end %>
 
 
